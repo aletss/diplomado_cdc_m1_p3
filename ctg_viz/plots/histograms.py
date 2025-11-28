@@ -11,14 +11,26 @@ from scipy import stats
 MATPLOTLIB_COLORS = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
                      '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
 
-def histogram_matplotlib(df, columns, show_density=False, show_kde=False, bins=30, alpha=0.7, chart_title='Histogram') -> plt.figure:
+def histogram_matplotlib(df, columns, show_density=False, show_kde=False) -> plt.Figure:
+    """Function to plot multiple columns in a single chart with matplotlib library
+
+    Args:
+        df (pandas.DataFrame): DataFrame with data to be plotted
+        columns (list): list with the name of columns to be plotted
+        show_density (bool, optional): Flag to show density. Defaults to False.
+        show_kde (bool, optional): Flag to show kde. Defaults to False.
+        bins (int, optional): Number of bins for the charts. Defaults to 30.
+
+    Returns:
+        plt.figure: matplotlib figure and axes objects
+    """
     fig, ax = plt.subplots(figsize=(8, 5))
     
     for i, column in enumerate(columns):
         values = df[column]
         color = MATPLOTLIB_COLORS[i % len(MATPLOTLIB_COLORS)]
 
-        ax.hist(values, bins=bins, alpha=alpha, label=column, 
+        ax.hist(values, alpha=0.7, label=column, 
                     density=(show_density), edgecolor='black'
                     , color=color)
 
@@ -38,12 +50,23 @@ def histogram_matplotlib(df, columns, show_density=False, show_kde=False, bins=3
     # Add labels and a title for clarity
     ax.set_xlabel("Value")
     ax.set_ylabel("Frequency")
-    ax.set_title(chart_title)
+    ax.set_title('Histogram')
     ax.legend()
 
-    return fig
+    return fig, ax
 
-def histogram_seaborn(df, columns, show_kde=False, show_density=False, chart_title='Histogram'):
+def histogram_seaborn(df, columns, show_kde=False, show_density=False) -> plt.Figure:
+    """Function to plot multiple columns in a single chart with seaborn library
+
+    Args:
+        df (pandas.DataFrame): DataFrame with data to be plotted
+        columns (list): list with the name of columns to be plotted
+        show_density (bool, optional): Flag to show density. Defaults to False.
+        show_kde (bool, optional): Flag to show kde. Defaults to False.
+
+    Returns:
+        plt.figure: matplotlib figure and axes objects
+    """
     fig, ax = plt.subplots(figsize=(8, 5))
     
     for column in columns:
@@ -55,8 +78,18 @@ def histogram_seaborn(df, columns, show_kde=False, show_density=False, chart_tit
     return fig
 
 
-def histogram_plotly(df, columns, bins=30, show_kde=False, show_density=False, chart_title='Histogram'):
-    """Returns a plotly Figure object."""
+def histogram_plotly(df, columns, bins=30, show_kde=False, show_density=False, chart_title='Histogram') -> plt.Figure:
+    """Function to plot multiple columns in a single chart with seaborn library
+
+    Args:
+        df (pandas.DataFrame): DataFrame with data to be plotted
+        columns (list): list with the name of columns to be plotted
+        show_density (bool, optional): Flag to show density. Defaults to False.
+        show_kde (bool, optional): Flag to show kde. Defaults to False.
+
+    Returns:
+        fig: plotly figure object
+    """
     histnorm = 'probability density' if (show_density or show_kde) else None
     
     fig = px.histogram(

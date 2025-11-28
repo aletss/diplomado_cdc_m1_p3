@@ -6,7 +6,7 @@ import numpy as np
 from scipy import stats
 import seaborn as sns
 
-def histogram_matplotlib(df, column_values, column_category=None, show_kde=False, show_density=False):
+def histogram_matplotlib(df, column_values, column_category=None, show_kde=False, show_density=False) -> plt.Figure:
     """Plot histograms with optional category splitting and KDE overlay.
 
     Args:
@@ -65,7 +65,7 @@ def histogram_matplotlib(df, column_values, column_category=None, show_kde=False
 
 
 
-def histogram_seaborn(df, column_values, column_category=None, show_kde=False, show_density=False):
+def histogram_seaborn(df, column_values, column_category=None, show_kde=False, show_density=False) -> plt.Figure:
     """Plot histograms with optional category splitting and KDE overlay.
 
     Args:
@@ -105,7 +105,7 @@ def histogram_seaborn(df, column_values, column_category=None, show_kde=False, s
     plt.tight_layout()
     return fig, ax
 
-def histogram_plotly(df, column_values, column_category=None, show_kde=False, show_density=False):
+def histogram_plotly(df, column_values, column_category=None, show_kde=False, show_density=False) -> plt.Figure:
     """Plot histograms with optional category splitting and KDE overlay.
 
     Args:

@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 
+# boxplot using matplotlib
 def boxplot_matplotlib(df, column_values, column_cathegory=None) -> plt.Figure:
     """Plots boxplot using matplotlib library
 
