@@ -5,7 +5,6 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
-import plotly.figure_factory as ff
 from scipy import stats
 
 df = pd.read_csv('D:/m1_practica3/CTG.csv')
