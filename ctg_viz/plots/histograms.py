@@ -22,7 +22,7 @@ def histogram_matplotlib(df, columns, show_density=False, show_kde=False) -> plt
         bins (int, optional): Number of bins for the charts. Defaults to 30.
 
     Returns:
-        plt.figure: matplotlib figure and axes objects
+        plt.figure, plt.ax: matplotlib figure and axes objects
     """
     fig, ax = plt.subplots(figsize=(8, 5))
     
@@ -65,17 +65,17 @@ def histogram_seaborn(df, columns, show_kde=False, show_density=False) -> plt.Fi
         show_kde (bool, optional): Flag to show kde. Defaults to False.
 
     Returns:
-        plt.figure: matplotlib figure and axes objects
+        plt.figure, plt.ax: matplotlib figure and axes objects
     """
     fig, ax = plt.subplots(figsize=(8, 5))
     
     for column in columns:
         sns.histplot(data=df, x=column, kde=show_kde, ax=ax, stat='density' if show_density else 'frequency', label=column)
     
-    ax.set_title(chart_title)
+    ax.set_title('Histogram')
     ax.legend()
     
-    return fig
+    return fig, ax
 
 
 def histogram_plotly(df, columns, bins=30, show_kde=False, show_density=False, chart_title='Histogram') -> plt.Figure:
